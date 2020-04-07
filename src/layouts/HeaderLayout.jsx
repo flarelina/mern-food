@@ -1,30 +1,46 @@
 import React from "react";
-import { Navbar, Container, NavbarBrand, Collapse, Nav, NavItem, NavLink } from 'reactstrap';
+
+import { 
+  Navbar, 
+  Container, 
+  NavbarBrand, 
+  Collapse, 
+  Nav, 
+  NavItem, 
+  NavLink 
+} from 'reactstrap';
 
 import { useHistory } from "react-router-dom";
 
 
-function HeaderLayout () {
+const HeaderLayout = () => {
   let history = useHistory();
 
   const gotoRoute = (path) => () => {
     history.push(path);
   }
 
+  const isActive = (path) => {
+    return true
+  }
+
+
   return (
     <Navbar expand="lg" color="primary">
         <Container>
             <NavbarBrand>MERN-FOOD</NavbarBrand>
+            
+            {/*Navigation*/}
             <Collapse navbar>
                 <Nav navbar>
-                    <NavItem active>
+                    <NavItem className={isActive("/login") ? 'active' : ''}>
                         <NavLink onClick={gotoRoute("/login")}>
-                            Login <span className="sr-only">(current)</span>
+                            Login
                         </NavLink>
                     </NavItem>
                     
-                    <NavItem>
-                    <NavLink onClick={gotoRoute("/")}>
+                    <NavItem className={isActive("/registration") ? 'active' : ''}>
+                    <NavLink onClick={gotoRoute("/registration")}>
                             Register
                         </NavLink>
                     </NavItem>
