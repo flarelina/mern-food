@@ -3,8 +3,8 @@ import HeaderLayout from "./HeaderLayout"
 
 import { Route, Switch } from "react-router-dom";
 
-import Login from '../views/Login/Login'
-import Registration from '../views/Registration/Registration'
+import Login from '../views/login/Login'
+import Registration from '../views/registration/Registration'
 
 class LandingLayout extends React.Component {
   render() {
@@ -12,8 +12,8 @@ class LandingLayout extends React.Component {
       <>
       <HeaderLayout></HeaderLayout>
       <Switch>
-        <Route path="/login" component={Login}></Route>
-        <Route path="/registration" component={Registration}></Route>
+        <Route path="/login" exact component={Login}></Route>
+        <Route path="/registration" exact component={Registration}></Route>
       </Switch>
       </>
     );

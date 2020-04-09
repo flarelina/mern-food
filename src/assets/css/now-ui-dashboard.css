@@ -4540,6 +4540,9 @@ Created using IcoMoon - icomoon.io
     .panel-header .header .category a {
       color: #FFFFFF; }
 
+.panel-header-xs {
+  height: 90px; }
+    
 .panel-header-sm {
   height: 135px; }
 

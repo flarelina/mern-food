@@ -24,7 +24,6 @@ const HeaderLayout = () => {
     return true
   }
 
-
   return (
     <Navbar expand="lg" color="primary">
         <Container>
