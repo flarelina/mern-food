@@ -1,0 +1,23 @@
+.homeCol {
+  text-align: center;
+}
+
+.homeImage {
+  padding: 10px;
+}
+
+.homeImage:hover {
+  transform: scale(1.05);
+  transition-duration: 1s;
+  cursor: pointer;
+}
+
+.itemPrice {
+  padding-top: 15px;
+  font-size: 20px;
+}
+
+.itemDescription {
+  padding-top: 10px;
+  font-size: 24px;
+}
