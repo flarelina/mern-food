@@ -23,7 +23,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/now-ui-dashboard.scss?v1.2.0";
 import "assets/css/demo.css";
 
-import LandingLayout from "./layouts/LandingLayout.jsx";
+import LandingLayout from "./layouts/landing-layout/LandingLayout.jsx";
 import AdminLayout from "./layouts/admin-layout/AdminLayout.jsx"
 
 ReactDOM.render(
@@ -34,5 +34,5 @@ ReactDOM.render(
       <Redirect to="/" />
     </Switch>
   </BrowserRouter>,
-  document.getElementById("root")
+  document.querySelector("#root")
 );

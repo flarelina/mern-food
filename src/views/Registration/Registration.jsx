@@ -34,7 +34,7 @@ export default class Registration extends React.Component {
         <Col sm="12" md={{ size: 6, offset: 3 }}>
           <Card>
             <CardHeader>
-              <h5 className="title">Registration</h5>
+              <h5 className="title text-primary">Registration</h5>
             </CardHeader>
           
             <CardBody>

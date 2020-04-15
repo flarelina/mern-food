@@ -20,7 +20,7 @@ export default class Login extends React.Component {
         <Col sm="12" md={{ size: 6, offset: 3 }}>
           <Card>
             <CardHeader>
-              <h5 className="title">Login</h5>
+              <h5 className="title text-primary">Login</h5>
             </CardHeader>
           
             <CardBody>
