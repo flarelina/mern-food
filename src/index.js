@@ -17,7 +17,9 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, Router } from "react-router-dom";
+import { createBrowserHistory } from "history";
+
 
 import "bootstrap/dist/css/bootstrap.css";
 import "assets/scss/now-ui-dashboard.scss?v1.2.0";
@@ -26,13 +28,15 @@ import "assets/css/demo.css";
 import LandingLayout from "./layouts/landing-layout/LandingLayout.jsx";
 import AdminLayout from "./layouts/admin-layout/AdminLayout.jsx"
 
+const hist = createBrowserHistory();
+
 ReactDOM.render(
-  <BrowserRouter>
+  <Router history={hist}>
     <Switch>
-    <Route path="/admin" component={AdminLayout} />
+      <Route path="/admin" component={AdminLayout} />
       <Route path="/" component={LandingLayout} />
       <Redirect to="/" />
     </Switch>
-  </BrowserRouter>,
+  </Router>,
   document.querySelector("#root")
 );

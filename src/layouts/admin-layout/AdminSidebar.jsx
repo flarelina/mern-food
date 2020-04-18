@@ -1,32 +1,82 @@
-import React       from "react";
-import { useHistory } from "react-router-dom"
-import { Nav }     from "reactstrap";
 
-function AdminSidebar() {
-  let history = useHistory();
+import React from "react";
+import { NavLink } from "react-router-dom";
+import { Nav } from "reactstrap";
 
-  const gotoRoute = (path) => () => {
-    history.push(path)
+// javascript plugin used to create scrollbars on windows
+import PerfectScrollbar from "perfect-scrollbar";
+
+import logo from "logo-white.svg";
+
+import Navigations from "../../references/navigations"
+
+var ps;
+
+class AdminSidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.activeRoute.bind(this);
   }
-
-  return (
-    <div className="sidebar" data-color="orange">
-      <div className="logo">
-        <span className="simple-text logo-normal">
-          MERN - FOOD
-        </span>
+  // verifies if routeName is the one active (in browser input)
+  activeRoute(routeName) {
+    return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
+  }
+  componentDidMount() {
+    if (navigator.platform.indexOf("Win") > -1) {
+      ps = new PerfectScrollbar(this.refs.sidebar, {
+        suppressScrollX: true,
+        suppressScrollY: false
+      });
+    }
+  }
+  componentWillUnmount() {
+    if (navigator.platform.indexOf("Win") > -1) {
+      ps.destroy();
+    }
+  }
+  renderNavigations() {
+    return Navigations.map(nav => {
+      return (
+        <li key={nav.key}>
+        <NavLink to={nav.routePath}
+                 className="nav-link"
+                 activeClassName="active">
+          <i className="now-ui-icons"/>
+          <p>{nav.label}</p>
+        </NavLink>
+      </li>
+      )
+    })
+  }
+  render() {
+    return (
+      <div className="sidebar" data-color="red">
+        <div className="logo">
+          <a
+            href="https://www.creative-tim.com?ref=nudr-sidebar"
+            className="simple-text logo-mini"
+            target="_blank"
+          >
+            <div className="logo-img">
+              <img src={logo} alt="react-logo" />
+            </div>
+          </a>
+          <a
+            href="https://www.creative-tim.com?ref=nudr-sidebar"
+            className="simple-text logo-normal"
+            target="_blank"
+          >
+            MERN-FOOD
+          </a>
+        </div>
+        <div className="sidebar-wrapper" ref="sidebar">
+          <Nav>
+            {this.renderNavigations()}
+          </Nav>
+        </div>
       </div>
-
-      {/*Navigation*/}
-      <div className="sidebar-wrapper">
-        <Nav className="nav-link active">
-          <li onClick={gotoRoute("/admin/products")} >
-              <p>Products</p> 
-          </li>
-        </Nav>
-      </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default AdminSidebar;
