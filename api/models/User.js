@@ -48,6 +48,10 @@ const userschema = mongoose.Schema({
     date_modified: {
         type: Date,
         required: true
+    },
+    date_all: {
+        type: Date,
+        required: true
     }
 
 });
