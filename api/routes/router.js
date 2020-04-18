@@ -125,7 +125,7 @@ router.post('/users/delete/:id', function (req, res) {
 });
 
 // ADD Announcement
-router.post('/users/add', function (req, res) {
+router.post('/users/addAnnouncement', function (req, res) {
     let user = new User();
     user.date_created = req.body.date_created;
     user.message = req.body.message;
@@ -138,6 +138,29 @@ router.post('/users/add', function (req, res) {
         }
         else{
             res.json(user)
+        }
+    });
+});
+
+
+// UPDATE user
+router.post('/users/updateAnnouncement/:id', function (req, res) {
+
+    User.findById(req.params.id, function(err, user) {
+        if (!user)
+            res.status(404).send("data is not found");
+        else {
+            user.date_created = req.body.date_created;
+            user.message = req.body.message;
+            user.postedby = req.body.postedby;
+            user.date_modified = req.body.date_modified;
+    
+            user.save().then(user => {
+                res.json({msg: "success"})
+            })
+            .catch(err => {
+                res.json({msg: "falied"});
+            });
         }
     });
 });
