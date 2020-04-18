@@ -19,10 +19,6 @@ const HeaderLayout = () => {
     history.push(path);
   }
 
-  const isActive = (path) => {
-    return true
-  }
-
   return (
     <Navbar expand="lg" color="primary">
         <Container>

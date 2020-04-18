@@ -9,6 +9,8 @@ import Products from '../../views/admin/products/Products'
 class AdminLayout extends React.Component {
 
   render() {
+    console.log(this.props)
+
     return (
       <div className="wrapper">
         <AdminSidebar />

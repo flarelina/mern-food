@@ -22,6 +22,7 @@ class AdminSidebar extends React.Component {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
   componentDidMount() {
+    console.log(this.props)
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,
@@ -49,13 +50,14 @@ class AdminSidebar extends React.Component {
     })
   }
   render() {
+    console.log(this.props.location)
+
     return (
       <div className="sidebar" data-color="red">
         <div className="logo">
           <a
             href="https://www.creative-tim.com?ref=nudr-sidebar"
             className="simple-text logo-mini"
-            target="_blank"
           >
             <div className="logo-img">
               <img src={logo} alt="react-logo" />
@@ -64,7 +66,6 @@ class AdminSidebar extends React.Component {
           <a
             href="https://www.creative-tim.com?ref=nudr-sidebar"
             className="simple-text logo-normal"
-            target="_blank"
           >
             MERN-FOOD
           </a>
