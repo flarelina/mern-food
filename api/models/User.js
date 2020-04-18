@@ -32,7 +32,24 @@ const userschema = mongoose.Schema({
     birthday: {
         type: String,
         required: true
+    },
+    date_created: {
+        type: Date,
+        required: true
+    },
+    message: {
+        type: String,
+        required: true
+    },
+    postedby: {
+        type: String,
+        required: true
+    },
+    date_modified: {
+        type: Date,
+        required: true
     }
+
 });
 
 const user = module.exports = mongoose.model('user', userschema);

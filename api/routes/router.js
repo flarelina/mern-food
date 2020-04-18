@@ -6,6 +6,8 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 
+
+
 // GET ALL users
 router.get('/users', function(req, res){
     let users = User.find({}, function(err, users){
@@ -72,8 +74,6 @@ router.post('/users/add', function (req, res) {
     user.phone = req.body.phone;
     user.address = req.body.address;
     user.birthday = req.body.birthday;
-
-
     user.save(function(err){
         if(err){
             console.log(err);
@@ -123,5 +123,25 @@ router.post('/users/delete/:id', function (req, res) {
         }
     });
 });
+
+// ADD Announcement
+router.post('/users/add', function (req, res) {
+    let user = new User();
+    user.date_created = req.body.date_created;
+    user.message = req.body.message;
+    user.postedby = req.body.postedby;
+    user.date_modified = req.body.date_modified;
+    user.save(function(err){
+        if(err){
+            console.log(err);
+            res.json({msg: "failed"})
+        }
+        else{
+            res.json(user)
+        }
+    });
+});
+
+
 
 module.exports = router;

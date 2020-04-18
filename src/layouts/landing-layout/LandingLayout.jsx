@@ -4,8 +4,8 @@ import FooterLayout from "./FooterLayout"
 
 import { Route, Switch } from "react-router-dom";
 
-import Login from '../../views/login/Login'
-import Registration from '../../views/registration/Registration'
+import Login from '../../views/Login/Login'
+import Registration from '../../views/Registration/Registration'
 import Home from '../../views/home/Home'
 
 class LandingLayout extends React.Component {
