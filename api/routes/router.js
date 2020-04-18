@@ -11,7 +11,7 @@ router.get('/users', function(req, res){
     let users = User.find({}, function(err, users){
         if(err){
             console.log(err);
-            res.json({msg: "failedffff"})
+            res.json({msg: "failed"})
         }
         else {
             res.json(users);
