@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 // Load models
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
+const Announcement = require('../models/Announcement');
+const Product = require('../models/Products');
 
 
 
@@ -124,14 +126,14 @@ router.post('/users/delete/:id', function (req, res) {
     });
 });
 
-// ADD Announcement
-router.post('/users/addAnnouncement', function (req, res) {
-    let user = new User();
-    user.date_created = req.body.date_created;
-    user.message = req.body.message;
-    user.postedby = req.body.postedby;
-    user.date_modified = req.body.date_modified;
-    user.save(function(err){
+// ADD Announcement  Module
+router.post('/announcement/addAnnouncement', function (req, res) {
+    let Announcement = new Announcement();
+    Announcement.date_created = req.body.date_created;
+    Announcement.message = req.body.message;
+    Announcement.postedby = req.body.postedby;
+    Announcement.date_modified = req.body.date_modified;
+    Announcement.save(function(err){
         if(err){
             console.log(err);
             res.json({msg: "failed"})
@@ -143,24 +145,98 @@ router.post('/users/addAnnouncement', function (req, res) {
 });
 
 
-// UPDATE user
-router.post('/users/updateAnnouncement/:id', function (req, res) {
+// UPDATE Announcement Module
+router.post('/announcement/updateAnnouncement/:id', function (req, res) {
 
-    User.findById(req.params.id, function(err, user) {
-        if (!user)
+    Announcement.findById(req.params.id, function(err, Announcement) {
+        if (!Announcement)
             res.status(404).send("data is not found");
         else {
-            user.date_created = req.body.date_created;
-            user.message = req.body.message;
-            user.postedby = req.body.postedby;
-            user.date_modified = req.body.date_modified;
-    
-            user.save().then(user => {
+            Announcement.date_created = req.body.date_created;
+            Announcement.message = req.body.message;
+            Announcement.postedby = req.body.postedby;
+            Announcement.date_modified = req.body.date_modified;
+            Announcement.save().then(Announcement => {
                 res.json({msg: "success"})
             })
             .catch(err => {
                 res.json({msg: "falied"});
             });
+        }
+    });
+});
+
+// DELETE Announcement Module
+router.post('/announcement/delete/:id', function (req, res) {
+    let query = { _id: req.params.id }
+    User.findByIdAndDelete(query, function(err){
+        if(err){
+            res.json({msg: "failed"})
+            return;
+        }
+        else{
+            res.json({msg: "success"})
+        }
+    });
+});
+
+// ADD Product  Module
+router.post('/product/addProduct', function (req, res) {
+    let Product = new Product();
+    Product.name = req.body.name;
+    Product.quantity = req.body.quantity;
+    Product.date_created = req.body.date_created;
+    Product.Item_Photo = req.body.Item_Photo;
+    Product.Item_Code = req.body.Item_Code;
+    Product.Item_Description = req.body.Item_Description;
+    Product.Price = req.body.Price;
+    Product.save(function(err){
+        if(err){
+            console.log(err);
+            res.json({msg: "failed"})
+        }
+        else{
+            res.json(user)
+        }
+    });
+});
+
+
+// UPDATE Product Module
+router.post('/product/updateProduct/:id', function (req, res) {
+
+    Product.findById(req.params.id, function(err, Product) {
+        if (!Product)
+            res.status(404).send("data is not found");
+        else {
+            Product.name = req.body.name;
+            Product.quantity = req.body.quantity;
+            Product.date_created = req.body.date_created;
+            Product.Item_Photo = req.body.Item_Photo;
+            Product.Item_Code = req.body.Item_Code;
+            Product.Item_Description = req.body.Item_Description;
+            Product.Price = req.body.Price;
+    
+            Product.save().then(Product => {
+                res.json({msg: "success"})
+            })
+            .catch(err => {
+                res.json({msg: "falied"});
+            });
+        }
+    });
+});
+
+// DELETE Product Module
+router.post('/product/deleteProduct/:id', function (req, res) {
+    let query = { _id: req.params.id }
+    Product.findByIdAndDelete(query, function(err){
+        if(err){
+            res.json({msg: "failed"})
+            return;
+        }
+        else{
+            res.json({msg: "success"})
         }
     });
 });
