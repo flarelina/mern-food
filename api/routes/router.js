@@ -7,6 +7,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Announcement = require('../models/Announcement');
 const Product = require('../models/Products');
+const Order = require('../models/Order');
 
 
 
@@ -229,6 +230,69 @@ router.post('/product/updateProduct/:id', function (req, res) {
 
 // DELETE Product Module
 router.post('/product/deleteProduct/:id', function (req, res) {
+    let query = { _id: req.params.id }
+    Product.findByIdAndDelete(query, function(err){
+        if(err){
+            res.json({msg: "failed"})
+            return;
+        }
+        else{
+            res.json({msg: "success"})
+        }
+    });
+});
+
+
+// ADD Order Module
+router.post('order/addOrder', function (req, res) {
+    let Order = new Order();
+    Order.name = req.body.name;
+    Order.quantity = req.body.quantity;
+    Order.OrderBy = req.body.OrderBy;
+    Order.Total_Price = req.body.Total_Price;
+    Order.Date_Order = req.body.Date_Order;
+    Order.Date_of_delivery = req.body.Date_of_delivery;
+    Order.Status = req.body.Status;
+    Order.save(function(err){
+        if(err){
+            console.log(err);
+            res.json({msg: "failed"})
+        }
+        else{
+            res.json(user)
+        }
+    });
+});
+
+
+// UPDATE Product Module
+router.post('/order/updateOrder/:id', function (req, res) {
+
+    Order.findById(req.params.id, function(err, Order) {
+        if (!Order)
+            res.status(404).send("data is not found");
+        else {
+            let Order = new Order();
+            Order.name = req.body.name;
+            Order.quantity = req.body.quantity;
+            Order.OrderBy = req.body.OrderBy;
+            Order.Total_Price = req.body.Total_Price;
+            Order.Date_Order = req.body.Date_Order;
+            Order.Date_of_delivery = req.body.Date_of_delivery;
+            Order.Status = req.body.Status;
+    
+            Order.save().then(Order => {
+                res.json({msg: "success"})
+            })
+            .catch(err => {
+                res.json({msg: "falied"});
+            });
+        }
+    });
+});
+
+// DELETE Product Module
+router.post('/order/deleteOrder/:id', function (req, res) {
     let query = { _id: req.params.id }
     Product.findByIdAndDelete(query, function(err){
         if(err){
