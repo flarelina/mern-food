@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const Announcement = require('../models/Announcement');
 const Product = require('../models/Products');
-const Order = require('../models/Order');
+const Order = require('../models/Orders');
 
 
 
