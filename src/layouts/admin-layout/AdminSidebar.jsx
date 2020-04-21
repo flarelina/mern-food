@@ -22,7 +22,6 @@ class AdminSidebar extends React.Component {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
   componentDidMount() {
-    console.log(this.props)
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,
@@ -36,22 +35,23 @@ class AdminSidebar extends React.Component {
     }
   }
   renderNavigations() {
+    const {pathname} = (this.props.location);
+
     return Navigations.map(nav => {
       return (
-        <li key={nav.key}>
-        <NavLink to={nav.routePath}
-                 className="nav-link"
-                 activeClassName="active">
-          <i className="now-ui-icons"/>
-          <p>{nav.label}</p>
-        </NavLink>
-      </li>
+        <li key={nav.key}
+            className={nav.routePath === pathname ? 'active' : ''}>
+          <NavLink to={nav.routePath}
+                   className="nav-link"
+                   activeClassName="active">
+            <i className="now-ui-icons"/>
+            <p>{nav.label}</p>
+          </NavLink>
+        </li>
       )
     })
   }
   render() {
-    console.log(this.props.location)
-
     return (
       <div className="sidebar" data-color="red">
         <div className="logo">
