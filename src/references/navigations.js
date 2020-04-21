@@ -11,6 +11,6 @@ const navs = [
     routePath  : "/admin/orders",
     icon       : ""
   }
-]
+];
 
 export default navs
