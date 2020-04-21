@@ -44,7 +44,7 @@ class AdminSidebar extends React.Component {
           <NavLink to={nav.routePath}
                    className="nav-link"
                    activeClassName="active">
-            <i className="now-ui-icons"/>
+            <i className="now-ui-icons business_badge"/>
             <p>{nav.label}</p>
           </NavLink>
         </li>
@@ -55,18 +55,15 @@ class AdminSidebar extends React.Component {
     return (
       <div className="sidebar" data-color="red">
         <div className="logo">
-          <a
-            href="https://www.creative-tim.com?ref=nudr-sidebar"
-            className="simple-text logo-mini"
-          >
+          <a href="https://www.creative-tim.com?ref=nudr-sidebar"
+             className="simple-text logo-mini">
             <div className="logo-img">
               <img src={logo} alt="react-logo" />
             </div>
           </a>
-          <a
-            href="https://www.creative-tim.com?ref=nudr-sidebar"
-            className="simple-text logo-normal"
-          >
+
+          <a href="https://www.creative-tim.com?ref=nudr-sidebar"
+              className="simple-text logo-normal">
             MERN-FOOD
           </a>
         </div>
