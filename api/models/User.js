@@ -48,8 +48,11 @@ const userschema = mongoose.Schema({
     date_modified: {
         type: Date,
         required: true
+    },
+    status: {
+        type: text,
+        required: true
     }
-
 });
 
 const user = module.exports = mongoose.model('user', userschema);
