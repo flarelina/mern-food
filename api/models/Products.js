@@ -10,23 +10,23 @@ const productSchema = mongoose.Schema({
         type: Integer,
         required: true
     },
-    date_created: {
+    dateCreated: {
         type: Date,
         required: true
     },
-    Item_Photo: {
+    itemPhoto: {
         type: Blob,
         required: true
     },
-    Item_Code: {
+    itemCode: {
         type: String,
         required: true
     },
-    Item_Description: {
+    itemDescription: {
         type: String,
         required: true
     },
-    Price: {
+    price: {
         type: Float,
         required: true
     }

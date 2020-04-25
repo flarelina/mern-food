@@ -32,11 +32,11 @@ router.post('/product/addProduct', function (req, res) {
     let Product = new Product();
     Product.name = req.body.name;
     Product.quantity = req.body.quantity;
-    Product.date_created = req.body.date_created;
-    Product.Item_Photo = req.body.Item_Photo;
-    Product.Item_Code = req.body.Item_Code;
-    Product.Item_Description = req.body.Item_Description;
-    Product.Price = req.body.Price;
+    Product.dateCreated = req.body.dateCreated;
+    Product.itemPhoto = req.body.itemPhoto;
+    Product.itemCode = req.body.itemCode;
+    Product.itemDescription = req.body.itemDescription;
+    Product.price = req.body.price;
     Product.save(function(err){
         if(err){
             console.log(err);
@@ -58,12 +58,11 @@ router.post('/product/updateProduct/:id', function (req, res) {
         else {
             Product.name = req.body.name;
             Product.quantity = req.body.quantity;
-            Product.date_created = req.body.date_created;
-            Product.Item_Photo = req.body.Item_Photo;
-            Product.Item_Code = req.body.Item_Code;
-            Product.Item_Description = req.body.Item_Description;
-            Product.Price = req.body.Price;
-    
+            Product.dateCreated = req.body.dateCreated;
+            Product.itemPhoto = req.body.itemPhoto;
+            Product.itemCode = req.body.itemCode;
+            Product.itemDescription = req.body.itemDescription;
+            Product.price = req.body.price;
             Product.save().then(Product => {
                 res.json({msg: "success"})
             })

@@ -33,7 +33,7 @@ const userschema = mongoose.Schema({
         type: String,
         required: true
     },
-    date_created: {
+    dateCreated: {
         type: Date,
         required: true
     },
@@ -45,7 +45,7 @@ const userschema = mongoose.Schema({
         type: String,
         required: true
     },
-    date_modified: {
+    dateModified: {
         type: Date,
         required: true
     },
