@@ -10,7 +10,7 @@ const announcementLogs = mongoose.Schema({
         type: String,
         required: true
     },
-    postedby: {
+    postedBy: {
         type: String,
         required: true
     },
