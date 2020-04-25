@@ -88,4 +88,24 @@ router.post('/orders/deleteOrder/:id', function (req, res) {
     });
 });
 
+
+
+// UPDATE Order Module
+router.post('/orders/updateOrderStatus/:id', function (req, res) {
+    Order.findById(req.params.id, function(err, Order) {
+        if (!Order)
+            res.status(404).send("data is not found");
+        else {
+            let Order = new Order();
+            Order.Status = req.body.Status;
+            Order.save().then(Order => {
+                res.json({msg: "success"})
+            })
+            .catch(err => {
+                res.json({msg: "falied"});
+            });
+        }
+    });
+});
+
 module.exports = router;
