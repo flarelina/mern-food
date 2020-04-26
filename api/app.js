@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mongoose connection
 const mongoose = require('mongoose');
 
-const _connStr = /*"mongodb://localhost:27017/mernfood";*/ 'mongodb+srv://Jolia:devqwerty@cluster0-ilqtj.mongodb.net/test?retryWrites=true&w=majority';
+const _connStr = /*"mongodb://localhost:27017/mernfood";*// 'mongodb+srv://Jolia:devqwerty@cluster0-ilqtj.mongodb.net/test?retryWrites=true&w=majority';
 mongoose.connect(_connStr,{ useNewUrlParser: true });
 const db = mongoose.connection;
 
@@ -44,8 +44,8 @@ app.use('/api', users);
 // Route for home
 app.get('/', function(req, res){
     res.send('Hello from Server');
-})
+});
 
 app.listen(process.env.PORT || 4000, function(){
     console.log('server started...');
-})
+});

@@ -17,7 +17,6 @@ const tableHeader = [
     {label: 'Email'           , key: 'email'},
     {label: 'Date Registered' , key: 'dateRegistered'},
     {label: 'Action'          , key: 'action'}
-
 ];
 
 const tableData = [
@@ -26,10 +25,20 @@ const tableData = [
     username       : "ces25",
     email          : "ceciliasalenga@email.com",
     dateRegistered : "January 04, 2020"
+  },
+  {
+    name           : "Cecilia Salenga 2",
+    username       : "ces252",
+    email          : "ceciliasalenga2@email.com",
+    dateRegistered : "January 05, 2020"
   }
 ];
 
 class Customers extends React.Component {
+
+  showCustomerModal = (data) => () => {
+    console.log(data)
+  };
 
   renderTableHeader = () => {
     return tableHeader.map(header => {
@@ -37,19 +46,27 @@ class Customers extends React.Component {
     })
   };
 
-  renderTableData() {
-    return tableData.map((order, key) => {
-      return tableHeader.map(header => {
-        if(header.key === "action") {
-          return (
-            <td key={`${key}${header.key}`} >
-              <Button color="primary" outline>View Details</Button>
-            </td>
-          )
-        }
+  renderTableData = (order, key) => {
+    return tableHeader.map(header => {
+      if(header.key === "action") {
+        return (
+          <td key={`${key}${header.key}`} >
+            <Button
+              color="primary"
+              outline
+              onClick={this.showCustomerModal(order)}
+            >View Details</Button>
+          </td>
+        )
+      }
 
-        return <td key={`${key}${header.key}`} >{order[header.key]}</td>
-      })
+      return <td key={`${key}${header.key}`} >{order[header.key]}</td>
+    })
+  };
+
+  renderTableRow = () => {
+    return tableData.map((order, key) => {
+      return <tr key={key}>{this.renderTableData(order, key)}</tr>
     })
   };
 
@@ -73,7 +90,7 @@ class Customers extends React.Component {
                 </thead>
 
                 <tbody>
-                  <tr>{this.renderTableData()}</tr>
+                  {this.renderTableRow()}
                 </tbody>
               </Table>
             </CardBody>

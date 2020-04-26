@@ -4,7 +4,7 @@ import AdminSidebar from "./AdminSidebar"
 
 import { Route, Switch } from "react-router-dom";
 
-import Customers  from '../../views/admin/customers/customers'
+import Customers  from '../../views/admin/customers/Customers'
 import Products   from '../../views/admin/products/Products'
 import Orders     from '../../views/admin/orders/Orders'
 
