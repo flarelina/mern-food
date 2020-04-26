@@ -33,10 +33,10 @@ router.get('/announcement/:id', function(req, res){
 // ADD Announcement  Module
 router.post('/announcement/addAnnouncement', function (req, res) {
     let Announcement = new Announcement();
-    Announcement.date_created = req.body.date_created;
+    Announcement.dateCreated = req.body.dateCreated;
     Announcement.message = req.body.message;
-    Announcement.postedby = req.body.postedby;
-    Announcement.date_modified = req.body.date_modified;
+    Announcement.postedBy = req.body.postedBy;
+    Announcement.dateModified = req.body.dateModified;
     Announcement.save(function(err){
         if(err){
             console.log(err);
@@ -56,10 +56,10 @@ router.post('/announcement/updateAnnouncement/:id', function (req, res) {
         if (!Announcement)
             res.status(404).send("data is not found");
         else {
-            Announcement.date_created = req.body.date_created;
+            Announcement.dateCreated = req.body.dateCreated;
             Announcement.message = req.body.message;
-            Announcement.postedby = req.body.postedby;
-            Announcement.date_modified = req.body.date_modified;
+            Announcement.postedBy = req.body.postedBy;
+            Announcement.dateModified = req.body.dateModified;
             Announcement.save().then(Announcement => {
                 res.json({msg: "success"})
             })

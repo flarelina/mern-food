@@ -76,6 +76,7 @@ router.post('/users/add', function (req, res) {
     user.phone = req.body.phone;
     user.address = req.body.address;
     user.birthday = req.body.birthday;
+    user.status = 0;
     user.save(function(err){
         if(err){
             console.log(err);
@@ -126,4 +127,21 @@ router.post('/users/delete/:id', function (req, res) {
     });
 });
 
+// Deactivate Account // 
+router.post('/users/DeactivateAccount/:id', function (req, res) {
+
+    User.findById(req.params.id, function(err, user) {
+        if (!user)
+            res.status(404).send("data is not found");
+        else {
+            user.status = 1;
+            user.save().then(user => {
+                res.json({msg: "success"})
+            })
+            .catch(err => {
+                res.json({msg: "falied"});
+            });
+        }
+    });
+});
 module.exports = router;

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const announcementLogs = mongoose.Schema({
 
-    date_created: {
+    dateCreated: {
         type: Date,
         required: true
     },
@@ -10,11 +10,11 @@ const announcementLogs = mongoose.Schema({
         type: String,
         required: true
     },
-    postedby: {
+    postedBy: {
         type: String,
         required: true
     },
-    date_modified: {
+    dateModified: {
         type: Date,
         required: true
     }

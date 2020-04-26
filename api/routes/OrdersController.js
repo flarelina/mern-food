@@ -6,8 +6,6 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Order = require('../models/Orders');
 
-
-
 // GET Order List
 router.get('/orders', function(req, res){
     let users = User.find({}, function(err, users){
@@ -34,10 +32,10 @@ router.post('orders/addOrder', function (req, res) {
     Order.name = req.body.name;
     Order.quantity = req.body.quantity;
     Order.OrderBy = req.body.OrderBy;
-    Order.Total_Price = req.body.Total_Price;
-    Order.Date_Order = req.body.Date_Order;
-    Order.Date_of_delivery = req.body.Date_of_delivery;
-    Order.Status = req.body.Status;
+    Order.totalPrice = req.body.totalPrice;
+    Order.dateOrder = req.body.dateOrder;
+    Order.dateOfDelivery = req.body.dateOfDelivery;
+    Order.status = req.body.status;
     Order.save(function(err){
         if(err){
             console.log(err);
@@ -61,9 +59,9 @@ router.post('/orders/updateOrder/:id', function (req, res) {
             Order.name = req.body.name;
             Order.quantity = req.body.quantity;
             Order.OrderBy = req.body.OrderBy;
-            Order.Total_Price = req.body.Total_Price;
-            Order.Date_Order = req.body.Date_Order;
-            Order.Date_of_delivery = req.body.Date_of_delivery;
+            Order.totalPrice = req.body.totalPrice;
+            Order.dateOrder = req.body.dateOrder;
+            Order.dateOfDelivery = req.body.dateOfDelivery;
             Order.Status = req.body.Status;
     
             Order.save().then(Order => {
@@ -86,6 +84,26 @@ router.post('/orders/deleteOrder/:id', function (req, res) {
         }
         else{
             res.json({msg: "success"})
+        }
+    });
+});
+
+
+
+// UPDATE Order Module
+router.post('/orders/updateOrderStatus/:id', function (req, res) {
+    Order.findById(req.params.id, function(err, Order) {
+        if (!Order)
+            res.status(404).send("data is not found");
+        else {
+            let Order = new Order();
+            Order.Status = req.body.Status;
+            Order.save().then(Order => {
+                res.json({msg: "success"})
+            })
+            .catch(err => {
+                res.json({msg: "falied"});
+            });
         }
     });
 });
