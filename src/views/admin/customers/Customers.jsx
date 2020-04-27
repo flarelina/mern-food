@@ -8,7 +8,8 @@ import {
   Table,
 } from "reactstrap";
 
-import PanelHeader from "components/PanelHeader/PanelHeader.jsx";
+import PanelHeader   from "components/PanelHeader/PanelHeader.jsx";
+import CustomerModal from "./CustomerModal"
 
 // Temporary Data
 const tableHeader = [
@@ -35,9 +36,23 @@ const tableData = [
 ];
 
 class Customers extends React.Component {
+  state = {
+    isShowModal     : false,
+    selectedCustomer: null
+  };
 
   showCustomerModal = (data) => () => {
-    console.log(data)
+    this.setState({
+      isShowModal: true,
+      selectedCustomer: data
+    })
+  };
+
+  hideCustomerModal = () => {
+    this.setState({
+      isShowModal      : false,
+      selectedCustomer : null
+    })
   };
 
   renderTableHeader = () => {
@@ -96,6 +111,12 @@ class Customers extends React.Component {
             </CardBody>
           </Card>
         </div>
+
+        <CustomerModal
+          isShowModal={this.state.isShowModal}
+          hideCustomerModal={this.hideCustomerModal}
+          selectedCustomer={this.state.selectedCustomer}
+        />
       </React.Fragment>
     );
   }
