@@ -1,5 +1,11 @@
 const navs = [
   {
+    label      : "Customers",
+    key        : "customers",
+    routePath  : "/admin/customers",
+    icon       : ""
+  },
+  {
     label      : "Products",
     key        : "products",
     routePath  : "/admin/products",

@@ -4,8 +4,9 @@ import AdminSidebar from "./AdminSidebar"
 
 import { Route, Switch } from "react-router-dom";
 
-import Products from '../../views/admin/products/Products'
-import Orders   from '../../views/admin/orders/Orders'
+import Customers  from '../../views/admin/customers/Customers'
+import Products   from '../../views/admin/products/Products'
+import Orders     from '../../views/admin/orders/Orders'
 
 class AdminLayout extends React.Component {
 
@@ -17,6 +18,7 @@ class AdminLayout extends React.Component {
           <Switch>
             <Route path="/admin/products" exact component={Products}></Route>
             <Route path="/admin/orders" exact component={Orders}></Route>
+            <Route path="/admin/customers" exact component={Customers}></Route>
           </Switch>
         </div>
       </div>

@@ -70,6 +70,17 @@ class AdminSidebar extends React.Component {
         <div className="sidebar-wrapper" ref="sidebar">
           <Nav>
             {this.renderNavigations()}
+
+            <li
+                className="active-pro">
+              <NavLink
+                to="/"
+                className="nav-link"
+              >
+                <i className="now-ui-icons business_badge"/>
+                <p>Logout</p>
+              </NavLink>
+            </li>
           </Nav>
         </div>
       </div>
