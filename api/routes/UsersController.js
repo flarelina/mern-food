@@ -77,6 +77,11 @@ router.post('/users/add', function (req, res) {
     user.address = req.body.address;
     user.birthday = req.body.birthday;
     user.status = 0;
+
+    //JLN: Other Information
+    user.dateCreated  = new Date();
+    user.dateModified = new Date();
+
     user.save(function(err){
         if(err){
             console.log(err);

@@ -37,20 +37,20 @@ const userschema = mongoose.Schema({
         type: Date,
         required: true
     },
-    message: {
+    /*message: {
         type: String,
         required: true
     },
     postedby: {
         type: String,
         required: true
-    },
+    },*/
     dateModified: {
         type: Date,
         required: true
     },
     status: {
-        type: text,
+        type: String,
         required: true
     }
 });
