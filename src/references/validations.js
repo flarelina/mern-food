@@ -4,7 +4,6 @@ export const required = (value) => {
   }
 };
 
-
 export default {
   required
 }

@@ -57,8 +57,26 @@ export default class Registration extends React.Component {
     }
   }
 
+  validateAll = () => {
+    const errors = [];
+
+    Object.keys(validations).forEach(key => {
+      validations[key].forEach(validation => {
+        const res = validation.fn(this.state[key]);
+
+        if(res.error) {
+          this.setState({[`${key}Err`]: validation.message});
+          errors.push(true);
+        }
+      });
+    });
+
+    return errors.some(e => !!e)
+  };
+
   registerUser = () => {
     // Client-side validation here
+    if(this.validateAll()) {return}
 
     // Initial Data Preparation
     const customerForm = {
