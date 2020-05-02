@@ -2,15 +2,30 @@ import React     from "react";
 import Customers from '../../apis/Customers'
 
 import {
-  Card,
-  CardHeader,
-  CardBody,
-  FormGroup,
-  Form,
-  Input,
   Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Form,
+  FormGroup,
+  FormFeedback,
+  Input,
   Spinner
 } from "reactstrap";
+
+import {required} from '../../references/validations'
+
+const validations = {
+  username : [{message: 'This field is required', fn: required}],
+  email    : [{message: 'This field is required', fn: required}],
+  lname    : [{message: 'This field is required', fn: required}],
+  fname    : [{message: 'This field is required', fn: required}],
+  phone    : [{message: 'This field is required', fn: required}],
+  address  : [{message: 'This field is required', fn: required}],
+  birthday : [{message: 'This field is required', fn: required}],
+  password : [{message: 'This field is required', fn: required}],
+  confirmPassword: [{message: 'This field is required', fn: required}],
+};
 
 export default class Registration extends React.Component {
   constructor(props) {
@@ -24,6 +39,18 @@ export default class Registration extends React.Component {
       address   : '',
       birthday  : '',
       password  : '',
+      confirmPassword: '',
+
+      // Error Messages
+      usernameErr  : '',
+      fnameErr     : '',
+      lnameErr     : '',
+      emailErr     : '',
+      phoneErr     : '',
+      addressErr   : '',
+      birthdayErr  : '',
+      passwordErr  : '',
+      confirmPasswordErr: '',
 
       // For spinner
       isProcessing: false
@@ -34,8 +61,16 @@ export default class Registration extends React.Component {
     // Client-side validation here
 
     // Initial Data Preparation
-    const customerForm = Object.assign({}, this.state);
-    delete customerForm.isProcessing;
+    const customerForm = {
+      username : this.state.username,
+      fname    : this.state.fname,
+      lname    : this.state.name,
+      email    : this.state.email,
+      phone    : this.state.phone,
+      address  : this.state.address,
+      birthday : this.state.birthday,
+      password : this.state.password
+    };
 
     // Start adding registering new customer
     this.setState({isProcessing: true});
@@ -49,6 +84,23 @@ export default class Registration extends React.Component {
       })
   };
 
+  handleInput = (event) => {
+    const {name, value} = event.target;
+
+    // Set Value
+    this.setState({[name]: value});
+
+    // Validate
+    this.setState({[`${name}Err`]: ''});
+    validations[name].forEach(validation => {
+      const res = validation.fn(value);
+
+      if(res.error) {
+        this.setState({[`${name}Err`]: validation.message})
+      }
+    })
+  };
+
   renderForm = () => {
     return (
       <div>
@@ -58,10 +110,13 @@ export default class Registration extends React.Component {
             <label>Username*</label>
             <Input
               value={this.state.username}
-              onChange={(e) => this.setState({ username: e.target.value })}
+              onChange={this.handleInput}
               type="text"
               autoComplete="username"
+              name="username"
+              invalid={!!this.state.usernameErr}
             />
+            <FormFeedback>{this.state.usernameErr}</FormFeedback>
           </FormGroup>
 
           {/* EMAIL */}
@@ -69,10 +124,13 @@ export default class Registration extends React.Component {
             <label>Email*</label>
             <Input
               value={this.state.email}
-              onChange={(e) => this.setState({ email: e.target.value })}
+              onChange={this.handleInput}
               type="email"
               autoComplete="Email"
+              name="email"
+              invalid={!!this.state.emailErr}
             />
+            <FormFeedback>{this.state.emailErr}</FormFeedback>
           </FormGroup>
 
           {/* FIRST NAME */}
@@ -80,10 +138,13 @@ export default class Registration extends React.Component {
             <label>First Name*</label>
             <Input
               value={this.state.fname}
-              onChange={(e) => this.setState({ fname: e.target.value })}
+              onChange={this.handleInput}
               type="text"
               autoComplete="firstname"
+              name="fname"
+              invalid={!!this.state.fnameErr}
             />
+            <FormFeedback>{this.state.fnameErr}</FormFeedback>
           </FormGroup>
 
           {/* LAST NAME */}
@@ -91,10 +152,13 @@ export default class Registration extends React.Component {
             <label>Last Name*</label>
             <Input
               value={this.state.lname}
-              onChange={(e) => this.setState({ lname: e.target.value })}
+              onChange={this.handleInput}
               type="text"
               autoComplete="lastname"
+              name="lname"
+              invalid={!!this.state.lnameErr}
             />
+            <FormFeedback>{this.state.lnameErr}</FormFeedback>
           </FormGroup>
 
           {/* CONTACT NUMBER */}
@@ -102,10 +166,13 @@ export default class Registration extends React.Component {
             <label>Contact Number*</label>
             <Input
               value={this.state.phone}
-              onChange={(e) => this.setState({ phone: e.target.value })}
+              onChange={this.handleInput}
               type="text"
-              autoComplete="contact-number"
+              autoComplete="contactnumber"
+              name="phone"
+              invalid={!!this.state.phoneErr}
             />
+            <FormFeedback>{this.state.phoneErr}</FormFeedback>
           </FormGroup>
 
           {/* BIRTHDAY */}
@@ -113,10 +180,13 @@ export default class Registration extends React.Component {
             <label>Birthdate</label>
             <Input
               value={this.state.birthday}
-              onChange={(e) => this.setState({ birthday: e.target.value })}
+              onChange={this.handleInput}
               type="Date"
               autoComplete="birthdate"
+              name="birthday"
+              invalid={!!this.state.birthdayErr}
             />
+            <FormFeedback>{this.state.birthdayErr}</FormFeedback>
           </FormGroup>
 
           {/* ADDRESS */}
@@ -124,10 +194,13 @@ export default class Registration extends React.Component {
             <label>Address</label>
             <Input
               value={this.state.address}
-              onChange={(e) => this.setState({ address: e.target.value })}
+              onChange={this.handleInput}
               type="text"
               autoComplete="address"
+              name="address"
+              invalid={!!this.state.addressErr}
             />
+            <FormFeedback>{this.state.addressErr}</FormFeedback>
           </FormGroup>
 
           {/* PASSWORD */}
@@ -135,11 +208,29 @@ export default class Registration extends React.Component {
             <label>Password</label>
             <Input
               value={this.state.password}
-              onChange={(e) => this.setState({ password: e.target.value })}
+              onChange={this.handleInput}
               placeholder="***********"
               type="password"
               autoComplete="current-password"
+              name="password"
+              invalid={!!this.state.passwordErr}
             />
+            <FormFeedback>{this.state.passwordErr}</FormFeedback>
+          </FormGroup>
+
+          {/* CONFIRM PASSWORD */}
+          <FormGroup>
+            <label>Confirm Password</label>
+            <Input
+              value={this.state.confirmPassword}
+              onChange={this.handleInput}
+              placeholder="***********"
+              type="password"
+              autoComplete="current-password"
+              name="confirmPassword"
+              invalid={!!this.state.confirmPasswordErr}
+            />
+            <FormFeedback>{this.state.confirmPasswordErr}</FormFeedback>
           </FormGroup>
         </Form>
 
