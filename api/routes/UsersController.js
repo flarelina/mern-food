@@ -50,7 +50,10 @@ router.post('/users/login', (req, res) => {
             //   expiresIn: 1440
             // })
             // res.send(token)
-            res.send("Success");
+            res.send({
+              error: null,
+              data: ""
+            });
           } else {
             // Passwords don't match
             res.json({ error: 'Invalid username or password' })

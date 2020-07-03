@@ -90,7 +90,6 @@ export default class Registration extends React.Component {
       password : this.state.password
     };
 
-
     // Start adding registering new customer
     this.setState({isProcessing: true});
     Customers.register(customerForm)
