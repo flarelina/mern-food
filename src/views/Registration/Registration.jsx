@@ -82,13 +82,14 @@ export default class Registration extends React.Component {
     const customerForm = {
       username : this.state.username,
       fname    : this.state.fname,
-      lname    : this.state.name,
+      lname    : this.state.lname,
       email    : this.state.email,
       phone    : this.state.phone,
       address  : this.state.address,
       birthday : this.state.birthday,
       password : this.state.password
     };
+
 
     // Start adding registering new customer
     this.setState({isProcessing: true});
