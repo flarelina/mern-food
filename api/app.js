@@ -13,7 +13,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Mongoose connection
 const mongoose = require('mongoose');
 
-const _connStr = /*'mongodb+srv://Jolia:devqwerty@cluster0-ilqtj.mongodb.net/test?retryWrites=true&w=majority'; */  "mongodb://localhost:27017/mernfood";
+const _connStr = 'mongodb+srv://Jolia:devqwerty@cluster0-ilqtj.mongodb.net/test?retryWrites=true&w=majority'; //  "mongodb://localhost:27017/mernfood";
 mongoose.connect(_connStr,{ useNewUrlParser: true });
 const db = mongoose.connection;
 
